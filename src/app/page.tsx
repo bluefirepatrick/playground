@@ -11,7 +11,7 @@ export default function Home() {
 
       <ul>
         <li>
-          <Link href="/read?book=https%3A%2F%2Fpublication-server.readium.org%2FbW9ieS1kaWNrLmVwdWI">Moby Dick (reflow)</Link>
+          <Link href="/read?book=http://localhost:15080/bW9ieS1kaWNrLmVwdWI">Moby Dick (reflow)</Link>
         </li>
         <li>
           <Link href="/read?book=https%3A%2F%2Fpublication-server.readium.org%2FQmVsbGFPcmlnaW5hbDMuZXB1Yg">Bella the Dragon (FXL)</Link>

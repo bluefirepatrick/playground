@@ -9,7 +9,9 @@ import tocModalStyles from "./assets/styles/tocModal.module.css";
 import TocIcon from "./assets/icons/toc.svg";
 import CloseIcon from "./assets/icons/close.svg";
 
-import { Links } from "@readium/shared";
+import { Link, Links } from "@readium/shared";
+import { useEpubNavigator } from "@/hooks/useEpubNavigator";
+import { TocItem } from "@/helpers/toc/createTocTree";
 
 import { ActionIcon } from "./Templates/ActionIcon";
 import {
@@ -41,6 +43,14 @@ export const TocModalAction: React.FC<IActionComponent> = ({ variant }) => {
 
   const setOpen = (value: boolean) => {
     dispatch(setTocOpen(value));
+  };
+
+    const { goLink,} = useEpubNavigator();
+
+  const handleClick = (tocItem: TocItem) => {
+    const link: Link = new Link({ href: tocItem.href });
+    console.log("PK link", link);
+    goLink(link, true, () => {});
   };
 
   const tocTree = useAppSelector((state) => state.publication.tocTree);
@@ -102,7 +112,12 @@ export const TocModalAction: React.FC<IActionComponent> = ({ variant }) => {
                                       </svg>
                                     </Button>
                                   ) : null}
-                                  {item.title}
+                                  <div
+                                    style={{ cursor: "pointer" }}
+                                    onClick={() => handleClick(item)}
+                                  >
+                                    {item.title}
+                                  </div>
                                 </TreeItemContent>
                                 <Collection items={item.children}>
                                   {renderItem}
